@@ -1,6 +1,8 @@
+import TodoList from "./TodoList";
+
 const ListItem = () => {
     return(
-        <li>Hit the gym</li>
+        <TodoList/>
     )
 }
 
