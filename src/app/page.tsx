@@ -6,11 +6,11 @@ export default function Home() {
   const [todoList, setTodoList] = useState<any[]>([])
   const [title, setTitle] = useState('');
   const addTask = () => {
-    const todo = { id: new Date(), name: title, isCompleted: false };
+    const task = { id: new Date(), name: title, isCompleted: false };
 
     if (title.length > 0) {
       setTodoList(prev => {
-        return [...prev, todo]
+        return [...prev, task]
       })
       setTitle('');
     } else {
@@ -19,11 +19,11 @@ export default function Home() {
   }
   const updateTask = (id: any) => {
     setTodoList(prev => {
-      return prev.map(todo => {
-        if (todo.id == id) {
-          return { ...todo, isCompleted: !todo.isCompleted };
+      return prev.map(task => {
+        if (task.id == id) {
+          return { ...task, isCompleted: !task.isCompleted };
         } else {
-          return todo;
+          return task;
         }
       });
     })
@@ -31,8 +31,8 @@ export default function Home() {
 
   const deleteTask = (id: any) => {
     setTodoList(prev => {
-      return prev.filter(todo => {
-        return todo.id != id;
+      return prev.filter(task => {
+        return task.id != id;
       });
     })
   }
@@ -50,13 +50,13 @@ export default function Home() {
       </div>
 
       <ul id="myUL">
-        {todoList.map((todo: any, key: any) => (
+        {todoList.map((task: any, key: any) => (
           <li key={key}
-            className={todo.isCompleted ? 'checked' : ''}
-            onClick={() => updateTask(todo.id)}
-          >{todo.name}
+            className={task.isCompleted ? 'checked' : ''}
+            onClick={() => updateTask(task.id)}
+          >{task.name}
             <span className='close'
-              onClick={() => deleteTask(todo.id)}>x</span>
+              onClick={() => deleteTask(task.id)}>x</span>
           </li>
         ))}
       </ul>
